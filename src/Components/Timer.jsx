@@ -4,7 +4,7 @@ import CircularCountdown from "./CircularCountdown";
 const timer = {
   hours: 1,
   minutes: 0,
-  seconds: 10
+  seconds: 4
 };
 
 const Timer = () => {
@@ -20,7 +20,7 @@ const Timer = () => {
   useEffect(() => {
     const newHours = ~~(totalSeconds / 3600);
     const newMinutes = ~~((totalSeconds - newHours * 3600) / 60);
-    const newSeconds = totalSeconds - newHours * 3600 - newMinutes * 60;
+    const newSeconds = totalSeconds - newHours * 3600 - newMinutes * 60;    
 
     setState({
       ...state,
@@ -51,7 +51,7 @@ const Timer = () => {
 
       <CircularCountdown currTime={state.hours} parts={timer.hours} />
       <CircularCountdown currTime={state.minutes} parts={60} />
-      <CircularCountdown currTime={state.seconds} parts={60} />
+      <CircularCountdown currTime={state.seconds} parts={60} transitionDuration={(state.seconds >= 59) ? 0 : 1000} />
     </div>
   );
 };
